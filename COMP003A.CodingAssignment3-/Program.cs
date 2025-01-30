@@ -10,10 +10,13 @@ namespace COMP003A.CodingAssignment3_
         {
             Console.WriteLine("Welcome to the Budget Management Tool!");
 
-            Console.Write("\nEnter your monthly income: ");
-            double num = double.Parse(Console.ReadLine());
-
             int choice;
+            double income;
+
+            Console.Write("\nEnter your monthly income: ");
+            income = double.Parse(Console.ReadLine());
+
+            List<(string Name, double Amount)> expenses = new List<(string, double)>();
 
             do
             {
@@ -24,7 +27,34 @@ namespace COMP003A.CodingAssignment3_
                 Console.WriteLine("4. Exit");
                 Console.Write("Enter you choice: ");
                 choice = int.Parse(Console.ReadLine());
-            } while (choice != 4);
+
+                switch (choice)
+                {
+                    case 1:
+                        Console.Write("Enter the expense name: ");
+                        string expenseName = Console.ReadLine();
+
+                        Console.Write("Enter the expense amount: ");
+                        double expenseAmount = double.Parse(Console.ReadLine());
+
+                        expenses.Add((expenseName, expenseAmount));
+                        Console.WriteLine("Expense added successfully.");
+                        break;
+                    case 2:
+                        Console.WriteLine("Expenses");
+                        break;
+                    case 3:
+                        Console.WriteLine("Select an expense to remove");
+                        break;
+                    case 4:
+                        Console.WriteLine("Exit");
+                        break;
+                    default:
+                        Console.WriteLine("Invail Input");
+                        break;
+                }
+
+                } while (choice != 4);
         }
     }
 }
