@@ -13,8 +13,19 @@ namespace COMP003A.CodingAssignment3_
             int choice;
             double income;
 
-            Console.Write("\nEnter your monthly income: ");
-            income = double.Parse(Console.ReadLine());
+            while (true)
+            {
+                Console.Write("\nEnter your monthly income: ");
+                try
+                {
+                    income = double.Parse(Console.ReadLine());
+                    break;
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Invalid input. Enter your monthly income number.");
+                }
+            }
 
             List<string> expenseNames = new List<string>();
             List<double> expenseAmounts = new List<double>();
@@ -22,7 +33,7 @@ namespace COMP003A.CodingAssignment3_
 
             do
             {
-                Console.WriteLine("\nMenu");
+                Console.WriteLine("\nMenu:");
                 Console.WriteLine("1. Add an Expense");
                 Console.WriteLine("2. View Expenses and Budget");
                 Console.WriteLine("3. Remove an Expense");
@@ -33,7 +44,7 @@ namespace COMP003A.CodingAssignment3_
                 switch (choice)
                 {
                     case 1:
-                        Console.Write("Enter the expense name: ");
+                        Console.Write("\nEnter the expense name: ");
                         string expenseName = Console.ReadLine();
 
                         Console.Write("Enter the expense amount: ");
@@ -54,7 +65,7 @@ namespace COMP003A.CodingAssignment3_
                         Console.WriteLine($"Remaining Budget: ${income - totalExpenses:0.00}");
                         break;
                     case 3:
-                        Console.Write("Enter the name of the expense to remove: ");
+                        Console.Write("\nEnter the name of the expense to remove: ");
                         string removeExpenseName = Console.ReadLine();
                         int removeExpense = expenseNames.IndexOf(removeExpenseName);
 
@@ -72,7 +83,7 @@ namespace COMP003A.CodingAssignment3_
 
                         break;
                     case 4:
-                        Console.WriteLine("Goodbye!");
+                        Console.WriteLine("\nGoodbye!");
                         break;
                     default:
                         Console.WriteLine("Invalid Input");
