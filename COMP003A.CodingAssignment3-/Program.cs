@@ -16,7 +16,9 @@ namespace COMP003A.CodingAssignment3_
             Console.Write("\nEnter your monthly income: ");
             income = double.Parse(Console.ReadLine());
 
-            List<(string Name, double Amount)> expenses = new List<(string, double)>();
+            List<string> expenseNames = new List<string>();
+            List<double> expenseAmounts = new List<double>();
+            double totalExpenses = 0;
 
             do
             {
@@ -37,20 +39,28 @@ namespace COMP003A.CodingAssignment3_
                         Console.Write("Enter the expense amount: ");
                         double expenseAmount = double.Parse(Console.ReadLine());
 
-                        expenses.Add((expenseName, expenseAmount));
+                        expenseNames.Add(expenseName);
+                        expenseAmounts.Add(expenseAmount);
+                        totalExpenses += expenseAmount;
                         Console.WriteLine("Expense added successfully.");
                         break;
                     case 2:
-                        Console.WriteLine("Expenses");
+                        Console.WriteLine("\nExpenses:");
+                        for (int i = 0; i < expenseNames.Count; i++)
+                        {
+                            Console.WriteLine($"{i + 1}. - {expenseNames[i]}: ${expenseAmounts[i]:0.00}");
+                        }
+                        Console.WriteLine($"Total Expenses: ${totalExpenses:0.00}");
+                        Console.WriteLine($"Remaining Budget: ${income - totalExpenses:0.00}");
                         break;
                     case 3:
-                        Console.WriteLine("Select an expense to remove");
+                        Console.Write("Enter the name of the expense to remove: ");
                         break;
                     case 4:
                         Console.WriteLine("Exit");
                         break;
                     default:
-                        Console.WriteLine("Invail Input");
+                        Console.WriteLine("Invalid Input");
                         break;
                 }
 
