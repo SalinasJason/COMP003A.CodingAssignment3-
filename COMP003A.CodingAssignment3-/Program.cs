@@ -48,16 +48,31 @@ namespace COMP003A.CodingAssignment3_
                         Console.WriteLine("\nExpenses:");
                         for (int i = 0; i < expenseNames.Count; i++)
                         {
-                            Console.WriteLine($"{i + 1}. - {expenseNames[i]}: ${expenseAmounts[i]:0.00}");
+                            Console.WriteLine($" - {expenseNames[i]}: ${expenseAmounts[i]:0.00}");
                         }
                         Console.WriteLine($"Total Expenses: ${totalExpenses:0.00}");
                         Console.WriteLine($"Remaining Budget: ${income - totalExpenses:0.00}");
                         break;
                     case 3:
                         Console.Write("Enter the name of the expense to remove: ");
+                        string removeExpenseName = Console.ReadLine();
+                        int removeExpense = expenseNames.IndexOf(removeExpenseName);
+
+                        if (removeExpense >= 0)
+                        {
+                            totalExpenses -= expenseAmounts[removeExpense];
+                            expenseNames.RemoveAt(removeExpense);
+                            expenseAmounts.RemoveAt(removeExpense);
+                            Console.WriteLine("Expense removed successfully.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Expense not found.");
+                        }
+
                         break;
                     case 4:
-                        Console.WriteLine("Exit");
+                        Console.WriteLine("Goodbye!");
                         break;
                     default:
                         Console.WriteLine("Invalid Input");
